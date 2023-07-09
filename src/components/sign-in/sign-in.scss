@@ -1,0 +1,17 @@
+.sing-in {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  span {
+    margin: 10px 0;
+  }
+  
+  @media (min-width: 768px) {
+    .sing-in {
+      width: 30%;
+    }
+  }
+  
