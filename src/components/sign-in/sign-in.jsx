@@ -4,7 +4,6 @@ import FormInput from "../form-input/form-input";
 import CustomeBtn from "../custom-button/custome-button";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
 
-
 class SingIn extends React.Component {
   constructor() {
     super();
@@ -31,7 +30,7 @@ class SingIn extends React.Component {
     return (
       <div className="sing-in">
         <h2>I already have an account</h2>
-        <span>Sing in with your email and password</span>
+        <span className="title">Sing in with your email and password</span>
         <form value="" onSubmit={this.handleSubmit}>
           <FormInput
             type="email"
@@ -49,9 +48,12 @@ class SingIn extends React.Component {
             label="Password"
             required
           />
-
-          <CustomeBtn type="submit">Sing in</CustomeBtn>
-          <CustomeBtn isGoogleSignIn={true} onClick={signInWithGoogle} >Sing in with Google</CustomeBtn>
+          <div className="btns">
+            <CustomeBtn type="submit">Sing in</CustomeBtn>
+            <CustomeBtn isGoogleSignIn={true} onClick={signInWithGoogle}>
+              Sing in with Google
+            </CustomeBtn>
+          </div>
         </form>
       </div>
     );
