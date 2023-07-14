@@ -7,16 +7,18 @@
     align-items: center;
     cursor: pointer;
     // border: 1px solid black;
+    box-sizing: border-box;
   
     .logo-container {
       height: 70%;
       width: 20%;
-      // border: 1px solid green;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
   
       .logo {
         position: relative;
-        height: 130px;
-        right: 18em;
+        height: 100px;
       }
     }
   
@@ -33,22 +35,19 @@
     }
   
     @media (max-width: 768px) {
-      flex-direction: column;
   
       .logo-container {
-        width: 100%;
-        margin-bottom: 10px;
-  
-        .logo {
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
 
-          height: 80px;
-          right: 0;
-        }
       }
   
       .options {
         width: 100%;
-        justify-content: center;
+        // justify-content: center;
+        position: relative;
+        align-items: center;
   
         .option {
           padding: 10px 10px;

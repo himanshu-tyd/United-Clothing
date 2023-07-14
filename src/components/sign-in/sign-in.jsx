@@ -9,8 +9,8 @@ class SingIn extends React.Component {
     super();
 
     this.state = {
-      email: null,
-      password: null,
+      email: '',
+      password: '',
     };
   }
 

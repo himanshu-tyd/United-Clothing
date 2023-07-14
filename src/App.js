@@ -6,7 +6,7 @@ import ShopPage from "./pages/shoppage/shop";
 import Header from "./components/header/header";
 import Access from "./pages/accesspage/accesspage";
 import SingIn from "./components/sign-in/sign-in";
-import { auth} from "./firebase/firebase.utils";
+import { auth } from "./firebase/firebase.utils";
 
 
 
@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      currentUser: ""
+      currentUser: null
     };
   }
 
@@ -22,9 +22,9 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    this.unsubscribeFromAuth=auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
-      console.log(user);
+    this.unsubscribeFromAuth=auth.onAuthStateChanged( async user => {
+        this.setState({currentUser:user})
+        console.log(user)
     });
   }
 
@@ -39,9 +39,9 @@ class App extends React.Component {
       <div className="App">
         <Header currentUser={this.state.currentUser}/>
         <Switch>
+          <Route exact path="/shop" component={ShopPage} />
           <Route exact path="/signin" component={SingIn} />
           <Route exact path="/acces" component={Access} />
-          <Route exact path="/shop" component={ShopPage} />
           <Route path="/" component={HomePage} />
         </Switch>
 
