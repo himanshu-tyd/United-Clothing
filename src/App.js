@@ -6,7 +6,7 @@ import ShopPage from "./pages/shoppage/shop";
 import Header from "./components/header/header";
 import Access from "./pages/accesspage/accesspage";
 import SingIn from "./components/sign-in/sign-in";
-import { auth } from "./firebase/firebase.utils";
+import { auth,createUserProfile } from "./firebase/firebase.utils";
 
 
 
@@ -18,13 +18,9 @@ class App extends React.Component {
     };
   }
 
-
-
-
   componentDidMount() {
     this.unsubscribeFromAuth=auth.onAuthStateChanged( async user => {
-        this.setState({currentUser:user})
-        console.log(user)
+      createUserProfile(user);
     });
   }
 
