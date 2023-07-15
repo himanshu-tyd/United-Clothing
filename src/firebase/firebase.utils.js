@@ -1,3 +1,4 @@
+
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -27,14 +28,12 @@ const signInWithGoogle = async () => {
     console.log("Error signing in with Google", error);
   }
 };
-
 const createUserProfile = async (userAuth, additionalData) => {
-  if (!userAuth) return;
+  if (!userAuth) return null;
 
   const userRef = doc(firestore, "users", userAuth.uid);
-  const snapShot = await getDoc(userRef);
 
-  if (!snapShot.exists()) {
+  if (!(await getDoc(userRef)).exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -52,6 +51,7 @@ const createUserProfile = async (userAuth, additionalData) => {
 
   return userRef;
 };
+
 
 export { auth, firestore, signInWithGoogle, createUserProfile };
 export default app;

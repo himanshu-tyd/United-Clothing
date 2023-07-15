@@ -7,11 +7,12 @@ import { signOut } from "firebase/auth";
 
 const Header = ({ currentUser }) => {
   const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {})
-      .catch((error) => {
-        console.log("Error signin out :", error);
-      });
+     try{
+        signOut(auth)
+        console.log("sign Out Succesfull ")
+     }catch(error){
+          console.log("Error signOut:",error.postMessage)
+     }
   };
 
   return (
@@ -21,6 +22,7 @@ const Header = ({ currentUser }) => {
       </Link>
 
       <div className="options">
+      <Link className="option" to="/">HOME</Link>
         <Link className="option" to="/shop">
           SHOP
         </Link>

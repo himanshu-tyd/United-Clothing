@@ -3,8 +3,9 @@ import "./sign-in.scss";
 import FormInput from "../form-input/form-input";
 import CustomeBtn from "../custom-button/custome-button";
 import { signInWithGoogle } from "../../firebase/firebase.utils";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-class SingIn extends React.Component {
+class SignIn extends React.Component {
   constructor() {
     super();
 
@@ -54,10 +55,11 @@ class SingIn extends React.Component {
               Sing in with Google
             </CustomeBtn>
           </div>
+            <Link to="/signup" className="no-ac">I don't have a account</Link>
         </form>
       </div>
     );
   }
 }
 
-export default SingIn;
+export default SignIn;
