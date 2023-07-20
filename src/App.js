@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import HomePage from "./pages/homepage/homepage";
 import { Switch, Route } from "react-router-dom";
 import ShopPage from "./pages/shoppage/shop";
@@ -10,9 +10,12 @@ import { auth, createUserProfile } from "./firebase/firebase.utils";
 import { onAuthStateChanged } from "firebase/auth";
 import SignUp from "./components/sign-up/sign-up";
 import { getDoc } from "firebase/firestore";
+import { setCurrentUser } from "./redux/user/user.actions";
+import { connect } from "react-redux";
 
-const App = () => {
-  const [currentUser, setCurrentUser] = useState(null);
+
+const App = ({setCurrentUser}) => {
+
 
   useEffect(() => {
     const unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
@@ -24,16 +27,14 @@ const App = () => {
           ...snapShot.data(),
         });
       } else {
-        setCurrentUser(null);
+        setCurrentUser(userAuth);
       }
     });
 
     return () => {
-      if (unsubscribeFromAuth) {
-        unsubscribeFromAuth();
-      }
+      unsubscribeFromAuth();
     };
-  }, []);
+  }, [setCurrentUser]);
 
   return (
     <div className="App">
@@ -49,4 +50,8 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps=(dispatch)=>({
+  setCurrentUser:user=>dispatch(setCurrentUser(user)),
+})
+
+export default connect(null,mapDispatchToProps)(App);

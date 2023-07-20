@@ -4,17 +4,19 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/UNITED.svg";
 import { auth } from "../../firebase/firebase.utils";
 import { signOut } from "firebase/auth";
-import { connect } from "react-redux";
+import {connect } from "react-redux";
+
 
 const Header = ({ currentUser }) => {
-  const handleSignOut = () => {
-    try {
-      signOut(auth);
-      console.log("sign Out Succesfull ");
-    } catch (error) {
-      console.log("Error signOut:", error.postMessage);
-    }
-  };
+  
+  const handSignOut=()=>{
+    try{
+      signOut(auth)
+      console.log("SignOut in successfull")
+    }catch(error){
+    console.log("Error in SingOut:",error.massage)
+  }
+}
 
   return (
     <div className="header">
@@ -33,7 +35,7 @@ const Header = ({ currentUser }) => {
           CONTACT
         </Link>
         {currentUser ? (
-          <div className="option" onClick={handleSignOut}>
+          <div className="option" onClick={handSignOut}>
             SIGN OUT
           </div>
         ) : (
@@ -45,8 +47,9 @@ const Header = ({ currentUser }) => {
     </div>
   );
 };
-const mapStateToProps =(state) => ({
-  currentUser: state.user.currentUser,
-});
+
+const mapStateToProps=(state)=>({
+  currentUser:state.user.currentUser
+})
 
 export default connect(mapStateToProps)(Header);
