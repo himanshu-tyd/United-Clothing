@@ -4,11 +4,17 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/UNITED.svg";
 import { auth } from "../../firebase/firebase.utils";
 import { signOut } from "firebase/auth";
-import {connect } from "react-redux";
+import {useSelector } from "react-redux";
+import CardIcon from "../card-icon/card-icon";
+import CardDropDown from "../card-dropdown/card-dropdown";
 
 
-const Header = ({ currentUser }) => {
-  
+
+const Header = () => {
+  const currentUser=useSelector((state)=>state.user.currentUser );
+  const hidden=useSelector((state)=>state.card.hidden);
+
+
   const handSignOut=()=>{
     try{
       signOut(auth)
@@ -34,22 +40,15 @@ const Header = ({ currentUser }) => {
         <Link className="option" to="/contact">
           CONTACT
         </Link>
-        {currentUser ? (
-          <div className="option" onClick={handSignOut}>
-            SIGN OUT
-          </div>
-        ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
-        )}
+        {currentUser ? (<div className="option" onClick={handSignOut}>SIGN OUT</div>)
+         : (<Link className="option" to="/signin"> SIGN IN</Link>)}
+        
+        <CardIcon/>
       </div>
+      { hidden ?null: <CardDropDown/>}
     </div>
   );
 };
 
-const mapStateToProps=(state)=>({
-  currentUser:state.user.currentUser
-})
 
-export default connect(mapStateToProps)(Header);
+export default (Header);

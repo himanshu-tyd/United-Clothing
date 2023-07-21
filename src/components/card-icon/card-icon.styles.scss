@@ -1,0 +1,25 @@
+.card-icon {
+  height: auto;
+  width: 4.5em;
+  display: flex;
+  position: flex;
+  align-items: center;
+  justify-content: center;
+
+//   border: 2px solid black;
+
+  .shopping-icon {
+    // border: 2px solid black;
+    height: 40px;
+    width: auto;
+   
+  }
+
+  .item-count {
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    top: 65px;
+
+  }
+}

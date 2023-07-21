@@ -1,0 +1,30 @@
+.card-dropdown{
+    border: 1px solid black;
+    position: absolute;
+    height: 340px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    top: 6.5em;
+    right: 5em;
+    background: #fff;
+    padding: 20px;
+    z-index: 5;
+
+    .card-item{
+        // border: 1px solid yellow;
+        height: 340px;
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        ::-webkit-scrollbar {
+            width: 0;
+          }
+    }
+
+    button{
+        margin-top: auto;
+    }
+}
