@@ -1,12 +1,12 @@
 import React from "react";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import "./card-icon.styles.scss";
-import { toggleCardHidden } from "../../redux/card/card-reducer";
+import { toggleCardHidden } from "../../redux/card/card.action";
 import { useDispatch } from "react-redux";
 
 const CardIcon = () => {
   const dispatch = useDispatch();
-
+  
   const toggleHide = () => {
     dispatch(toggleCardHidden());
   };
